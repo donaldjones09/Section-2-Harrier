@@ -2,7 +2,10 @@ from flask import Flask, render_template
 from datetime import datetime
 from sqlalchemy import *
 
-db = create_engine('sqlite:///section2.db')
+app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
+app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///section2.db"
+app.config["SQLALCHEMY_ECHO"] = True
+db = SQLAlchemy(app)
 
 app = Flask(__name__)
 
@@ -18,8 +21,7 @@ def outdoor():
 
 @app.route("/outdoor/outdoorschedule")
 def outdoor_schedule():
-    meets = outdoorschedule.query.filter_by(year = current_year).first()
-    return render_template("outdoorschedule.html",rows = meets, current_year = current_year)
+    return render_template("outdoorschedule.html", current_year = current_year)
 
 @app.route("/indoor", methods=["GET", "POST"])
 def indoor():
