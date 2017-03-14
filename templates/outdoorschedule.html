@@ -8,4 +8,26 @@
   <div class = "container">
     <h3>{{ current_year }} Outdoor Track Invitational Schedule</h3>
   </div>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Date</th>
+        <th>Meet Name</th>
+        <th>Location</th>
+        <th>Time</th>
+        <tH>Results</th>
+      </tr>
+    </thead>
+    <tbody>
+      {{% for row in rows %}}
+      <tr>
+        <td class="c1">{{row.month}}/{{row.day}}</td>
+        <td class="c2">{{row.name}}</td>
+        <td class="c3">{{row.location}}</td>
+        <td class="c4">{{row.time}}</td>
+        <td class="c5">{{row.results}}</td>
+      </tr>
+      {{% endfor %}}
+    </tbody>
+  </table>
 {% endblock %}
